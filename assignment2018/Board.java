@@ -1,7 +1,5 @@
 package assignment2018;
 
-
-import assignment2018.codeprovided.Pawn;
 import assignment2018.codeprovided.Piece;
 
 
@@ -29,6 +27,12 @@ public class Board{
 
     public Piece[][] getBoard(){
         return boardArray;
+    }
+
+    public void setPosition(int x, int y, Piece piece){
+        //Whenever this method is called checkIfValidLocation should be called before it to make sure no errors occur
+        //TODO: add exception here to make sure that there is no possibilities of errors
+        boardArray[x][y] = piece;
     }
 
     //TODO: Method to insert of remove a piece
