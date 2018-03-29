@@ -21,87 +21,44 @@ public class Rook extends Piece {
         int i;
         //Up
         for (i = 0; i >= y; i++){
-            //Check that the space in front is not out of range
-            while (!(getBoard().outOfRange(x, y - i))){
-                //Check if it is occupied
-                if (getBoard().occupied(x, y - i)){
-                    //Check the colour is the same
-                    if (!(getColour() == getBoard().getPiece(x, y - i).getColour())){
-                        //same colour so add to the array as valid move. Then break
-                        theMove = new Move (this, x, y, x, y - i, true);
-                        moves.add(theMove);
-                    }
-                    //Can't go through a piece so break out of loop
-                    break;
-                }
-                //Not going through a piece and not out of bounds so valid move
-                theMove = new Move (this, x, y, x, y - i, false);
-                moves.add(theMove);
-            }
+            addMoves(x, y - i, moves);
         }
 
         //Down
-        for (i = y; i < getBoard().getBOARD_SIZE() - 1; i++){
-            //Check that the space in front is not out of range
-            while (!(getBoard().outOfRange(x, y + i))){
-                //Check if it is occupied
-                if (getBoard().occupied(x, y + i)){
-                    //Check the colour is the same
-                    if (!(getColour() == getBoard().getPiece(x, y + i).getColour())){
-                        //same colour so add to the array as valid move. Then break
-                        theMove = new Move (this, x, y, x, y + i, true);
-                        moves.add(theMove);
-                    }
-                    //Can't go through a piece so break out of loop
-                    break;
-                }
-                //Not going through a piece and not out of bounds so valid move
-                theMove = new Move (this, x, y, x, y + i, false);
-                moves.add(theMove);
-            }
+        for (i = y; i < getBoard().getBOARD_SIZE() - 1 - y; i++){
+            addMoves(x, y + i, moves);
         }
 
         //Left
         for (i = 0; i >= x; i++){
-            //Check that the space in front is not out of range
-            while (!(getBoard().outOfRange(x - i, y))){
-                //Check if it is occupied
-                if (getBoard().occupied(x - i, y)){
-                    //Check the colour is the same
-                    if (!(getColour() == getBoard().getPiece(x - i, y).getColour())){
-                        //same colour so add to the array as valid move. Then break
-                        theMove = new Move (this, x, y, x - i, y, true);
-                        moves.add(theMove);
-                    }
-                    //Can't go through a piece so break out of loop
-                    break;
-                }
-                //Not going through a piece and not out of bounds so valid move
-                theMove = new Move (this, x, y, x - i , y, false);
-                moves.add(theMove);
-            }
+            addMoves(x - i, y, moves);
         }
 
         //Right
-        for (i = x; i < getBoard().getBOARD_SIZE() - 1; i++){
-            //Check that the space in front is not out of range
-            while (!(getBoard().outOfRange(x + i, y))){
-                //Check if it is occupied
-                if (getBoard().occupied(x + i, y)){
-                    //Check the colour is the same
-                    if (!(getColour() == getBoard().getPiece(x + i, y).getColour())){
-                        //same colour so add to the array as valid move. Then break
-                        theMove = new Move (this, x, y, x + i, y, true);
-                        moves.add(theMove);
-                    }
-                    //Can't go through a piece so break out of loop
-                    break;
-                }
-                //Not going through a piece and not out of bounds so valid move
-                theMove = new Move (this, x, y, x + i, y, false);
-                moves.add(theMove);
-            }
+        for (i = x; i < getBoard().getBOARD_SIZE() - 1 - y; i++){
+            addMoves(x + i, y, moves);
         }
+
         return moves;
+    }
+
+    public void addMoves(int x, int y, ArrayList<Move> moves){
+        //Check that the target space is not out of range
+        while (!(getBoard().outOfRange(x, y))){
+            //Check if it is occupied
+            if (getBoard().occupied(x, y)){
+                //Check the colour is the same
+                if (!(getColour() == getBoard().getPiece(x, y).getColour())){
+                    //same colour so add to the array as valid move
+                    Move theMove = new Move (this, getX(), getY(), x, y, true);
+                    moves.add(theMove);
+                }
+                //Can't go through a piece so break out of loop
+                break;
+            }
+            //Not going through a piece and not out of bounds so valid move
+            Move theMove = new Move (this, getX(), getY(), x, y, false);
+            moves.add(theMove);
+        }
     }
 }
