@@ -19,6 +19,7 @@ public class Bishop extends Piece {
 
         int i;
         int j;
+
         //Down right
         j = 0;
         for (i = 0; i < getBoard().getBOARD_SIZE() - 1 - y; i++){
@@ -29,9 +30,24 @@ public class Bishop extends Piece {
         //Up left
         j = 0;
         for (i = 0; i >= y; i++){
-                addMoves(x - j, y - i, moves);
-                j++;
-            }
+            addMoves(x - j, y - i, moves);
+            j++;
+        }
+
+        //Down left
+        j = 0;
+        for (i = 0; i < getBoard().getBOARD_SIZE() - 1 - y; i++){
+            addMoves(x - j, y + i, moves);
+            j++;
+        }
+
+        //Up right
+        j = 0;
+        for (i = 0; i >= y; i++){
+            addMoves(x + j, y - i, moves);
+            j++;
+        }
+
         return moves;
     }
 
