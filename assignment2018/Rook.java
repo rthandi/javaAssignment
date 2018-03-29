@@ -15,8 +15,8 @@ public class Rook extends Piece {
         int x = this.getX();
         int y = this.getY();
 
-        Move theMove = null;
-        ArrayList<Move> moves = new ArrayList<Move>();
+        Move theMove;
+        ArrayList<Move> moves = new ArrayList<>();
 
         int i;
         //Up
