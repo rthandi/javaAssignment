@@ -42,7 +42,7 @@ public class Rook extends Piece {
         return moves;
     }
 
-    public void addMoves(int x, int y, ArrayList<Move> moves){
+    private void addMoves(int x, int y, ArrayList<Move> moves){
         //Check that the target space is not out of range
         while (!(getBoard().outOfRange(x, y))){
             //Check if it is occupied

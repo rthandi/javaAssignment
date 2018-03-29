@@ -4,8 +4,8 @@ import assignment2018.codeprovided.Piece;
 
 import java.util.ArrayList;
 
-public class Bishop extends Piece {
-    public Bishop(int i, int ix, int iy, int c, Board b) {
+public class Queen extends Piece {
+    public Queen(int i, int ix, int iy, int c, Board b) {
         super(i, ix, iy, c, b);
     }
 
@@ -19,6 +19,26 @@ public class Bishop extends Piece {
 
         int i;
         int j;
+
+        //Up
+        for (i = 0; i >= y; i++){
+            addMoves(x, y - i, moves);
+        }
+
+        //Down
+        for (i = y; i < getBoard().getBOARD_SIZE() - 1 - y; i++){
+            addMoves(x, y + i, moves);
+        }
+
+        //Left
+        for (i = 0; i >= x; i++){
+            addMoves(x - i, y, moves);
+        }
+
+        //Right
+        for (i = x; i < getBoard().getBOARD_SIZE() - 1 - y; i++){
+            addMoves(x + i, y, moves);
+        }
 
         //Down right
         j = 0;
@@ -71,4 +91,3 @@ public class Bishop extends Piece {
         }
     }
 }
-
