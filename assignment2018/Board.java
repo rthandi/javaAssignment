@@ -11,6 +11,10 @@ public class Board{
 
     public Board(){ }
 
+    public int getBOARD_SIZE() {
+        return BOARD_SIZE;
+    }
+
     public boolean outOfRange(int x, int y) {
         return x < 0 || x > BOARD_SIZE - 1 || y < 0 || y > BOARD_SIZE - 1;
     }
