@@ -1,12 +1,13 @@
 package assignment2018;
 
 import assignment2018.codeprovided.Piece;
+import assignment2018.codeprovided.PieceCode;
 
 import java.util.ArrayList;
 
 public class Bishop extends Piece {
-    public Bishop(int i, int ix, int iy, int c, Board b) {
-        super(i, ix, iy, c, b);
+    public Bishop(int ix, int iy, int c, Board b) {
+        super(PieceCode.BISHOP, ix, iy, c, b);
     }
 
     @Override
