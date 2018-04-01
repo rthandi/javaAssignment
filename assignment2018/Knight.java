@@ -40,16 +40,15 @@ public class Knight extends Piece {
         return moves;
     }
 
-    private void addMoves(int x, int y, ArrayList<Move> moves){
+    private void addMoves(int x, int y, ArrayList<Move> moves) {
         //Check if target space is occupied
-        if (getBoard().occupied(x, y)){
+        if (getBoard().occupied(x, y)) {
             //Check if it is the same colour
-            if (!(getBoard().getPiece(x, y).getColour() == getColour())){
+            if (!(getBoard().getPiece(x, y).getColour() == getColour())) {
                 Move theMove = new Move(this, getX(), getY(), x, y, true);
                 moves.add(theMove);
             }
-        }
-        else {
+        } else {
             Move theMove = new Move(this, getX(), getY(), x, y, false);
             moves.add(theMove);
         }

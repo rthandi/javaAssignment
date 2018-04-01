@@ -11,12 +11,28 @@ public class Move {
     private boolean occupied;
     private Piece piece;
 
-    public Move(Piece inputPiece, int inputCurrentX, int inputCurrentY, int inputTargetX, int inputTargetY, boolean inputOccupied){
+    public Move(Piece inputPiece, int inputCurrentX, int inputCurrentY, int inputTargetX, int inputTargetY, boolean inputOccupied) {
         piece = inputPiece;
         currentX = inputCurrentX;
         currentY = inputCurrentY;
         targetX = inputTargetX;
         targetY = inputTargetY;
         occupied = inputOccupied;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public int getTargetX() {
+        return targetX;
+    }
+
+    public int getTargetY() {
+        return targetY;
     }
 }
