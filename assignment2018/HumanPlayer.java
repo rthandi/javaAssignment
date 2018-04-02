@@ -18,7 +18,6 @@ public class HumanPlayer extends Player {
         ArrayList<Move> possibleMoves = new ArrayList<>();
         int i;
         for (i = 0; i <= getPieces().getNumPieces() - 1; i++) {
-            System.out.println(i);
             possibleMoves.addAll(getPieces().getPiece(i).availableMoves());
         }
 
@@ -62,6 +61,7 @@ public class HumanPlayer extends Player {
                         return true;
                     }
                 }
+                System.out.println("Invalid move. Try again");
             }
         }
     }

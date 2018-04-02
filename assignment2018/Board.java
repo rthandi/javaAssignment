@@ -21,7 +21,7 @@ public class Board {
     }
 
     public boolean occupied(int x, int y) {
-        return boardArray[x][y] == null;
+        return boardArray[x][y] != null;
     }
 
     public Piece getPiece(int x, int y) {

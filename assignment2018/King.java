@@ -26,17 +26,20 @@ public class King extends Piece {
         //Loop through x and y between -1 and 1
         for (i = -1; i <= 1; i++){
             for (j = -1; j <= 1; j++){
-                //Check if target space is occupied
-                if (getBoard().occupied(i, j)) {
-                    //Check if it is the same colour
-                    //Don't need to do a check to see if i and j are both 0 as the piece will have the same colour so a move will not be generated
-                    if (!(getBoard().getPiece(i, j).getColour() == getColour())) {
-                        theMove = new Move(this, x, y, i, j, true);
+                //Check target space is in bounds
+                if (!(getBoard().outOfRange(i, j))) {
+                    //Check if target space is occupied
+                    if (getBoard().occupied(i, j)) {
+                        //Check if it is the same colour
+                        //Don't need to do a check to see if i and j are both 0 as the piece will have the same colour so a move will not be generated
+                        if (!(getBoard().getPiece(i, j).getColour() == getColour())) {
+                            theMove = new Move(this, x, y, i, j, true);
+                            moves.add(theMove);
+                        }
+                    } else {
+                        theMove = new Move(this, x, y, i, j, false);
                         moves.add(theMove);
                     }
-                } else {
-                    theMove = new Move(this, x, y, i, j, false);
-                    moves.add(theMove);
                 }
             }
         }

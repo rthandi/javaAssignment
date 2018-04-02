@@ -1,7 +1,5 @@
 package assignment2018;
 
-import assignment2018.Board;
-import assignment2018.Move;
 import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.PieceCode;
 
@@ -41,16 +39,19 @@ public class Knight extends Piece {
     }
 
     private void addMoves(int x, int y, ArrayList<Move> moves) {
-        //Check if target space is occupied
-        if (getBoard().occupied(x, y)) {
-            //Check if it is the same colour
-            if (!(getBoard().getPiece(x, y).getColour() == getColour())) {
-                Move theMove = new Move(this, getX(), getY(), x, y, true);
+        //Check target space is in bounds
+        if (!(getBoard().outOfRange(x, y))) {
+            //Check if target space is occupied
+            if (getBoard().occupied(x, y)) {
+                //Check if it is the same colour
+                if (!(getBoard().getPiece(x, y).getColour() == getColour())) {
+                    Move theMove = new Move(this, getX(), getY(), x, y, true);
+                    moves.add(theMove);
+                }
+            } else {
+                Move theMove = new Move(this, getX(), getY(), x, y, false);
                 moves.add(theMove);
             }
-        } else {
-            Move theMove = new Move(this, getX(), getY(), x, y, false);
-            moves.add(theMove);
         }
     }
 }
