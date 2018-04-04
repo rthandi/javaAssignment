@@ -10,6 +10,16 @@ public class Chess {
         player2 = new HumanPlayer("name", new Pieces(board, 0), board, player1);
         player1.setOpponent(player2);
 
-        player1.makeMove();
+        TextDisplay display = new TextDisplay();
+        display.cleanBoard();
+        display.displayBoard(player1.getPieces());
+        display.displayBoard(player2.getPieces());
+
+        while (true){
+            player1.makeMove();
+            display.displayBoard(player1.getPieces());
+            player2.makeMove();
+            display.displayBoard(player2.getPieces());
+        }
     }
 }
