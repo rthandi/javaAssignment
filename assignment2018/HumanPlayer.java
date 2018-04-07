@@ -14,11 +14,13 @@ public class HumanPlayer extends Player {
     @Override
     public boolean makeMove() {
 
-        //Add all moves to an array list
+        //Loop through all pieces to find an available move
         ArrayList<Move> possibleMoves = new ArrayList<>();
         int i;
         for (i = 0; i <= getPieces().getNumPieces() - 1; i++) {
-            possibleMoves.addAll(getPieces().getPiece(i).availableMoves());
+            while (possibleMoves.isEmpty()){
+                possibleMoves.addAll(getPieces().getPiece(i).availableMoves());
+            }
         }
 
         //Check if there are possible moves
@@ -45,7 +47,7 @@ public class HumanPlayer extends Player {
                 if (!(fromX == -1 && fromY == -1 && toX == -1 && toY == -1)) {
                     inputMove = new Move(getBoard().getPiece(fromX, fromY), fromX, fromY, toX, toY, getBoard().occupied(toX, toY));
                     //Check if move is possible
-                    if (possibleMoves.contains(inputMove)) {
+                    if (getBoard().getPiece(fromX, fromY).availableMoves().contains(inputMove)) {
                         if (getBoard().occupied(toX, toY)) {
                             //Delete piece from the opponent's piece collection
                             getOpponent().deletePiece(getBoard().getPiece(toX, toY));

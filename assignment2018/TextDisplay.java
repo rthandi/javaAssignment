@@ -35,11 +35,15 @@ public class TextDisplay implements Display {
 
         //Print array to screen
         for(i = 0; i <= 7; i++) {
-            System.out.println(i);
+            System.out.println("");
             for (j = 0; j <= 7; j++) {
-                System.out.print(" " + board[i][j] + " ");
+                System.out.print(" " + board[j][i] + " ");
             }
+            System.out.print(" " +  (i+1) );
         }
+        System.out.println("");
+        System.out.println(" a  b  c  d  e  f  g  h");
+        System.out.println("");
     }
 
     public void cleanBoard() {
