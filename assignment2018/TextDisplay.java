@@ -16,11 +16,11 @@ public class TextDisplay implements Display {
         for(i = 0; i <= 7; i++){
             for(j=0; j <= 7; j++){
                 //If white and colour of myPieces is white then replace with *
-                if ((int)board[i][j] >= 97 || (int)board[i][j] <= 122 && myPieces.getPiece(0).getColour() == 1){
+                if ((int)board[i][j] >= 97 || (int)board[i][j] <= 122 && myPieces.getPiece(0).getColour() == 0){
                     board[i][j] = '*';
                 }
                 //If black and colour of myPieces is black then replace with *
-                else if ((int)board[i][j] >= 65 || (int)board[i][j] <= 90 && myPieces.getPiece(0).getColour() == 0){
+                else if ((int)board[i][j] >= 65 || (int)board[i][j] <= 90 && myPieces.getPiece(0).getColour() == 1){
                     board[i][j] = '*';
                 }
             }

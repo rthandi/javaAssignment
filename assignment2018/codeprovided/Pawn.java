@@ -59,8 +59,6 @@ public class Pawn extends Piece {
         if (!getBoard().occupied(x, y + 1)) {
             theMove = new Move(this, x, y, x, y + 1, false);
             whiteMoves.add(theMove);
-            System.out.println(theMove.getTargetX());
-            System.out.println(theMove.getTargetY());
         }
 
         // second legal move is to go from x,y to x,y+2 if x,y+2 is unoccupied]
@@ -108,8 +106,6 @@ public class Pawn extends Piece {
         if (!getBoard().occupied(x, y - 1)) {
             theMove = new Move(this, x, y, x, y - 1, false);
             blackMoves.add(theMove);
-            System.out.println(theMove.getTargetX());
-            System.out.println(theMove.getTargetY());
         }
 
         // second legal move is to go from x,y to x,y+2 if x,y+2 is unoccupied
