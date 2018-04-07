@@ -39,7 +39,7 @@ public class TextDisplay implements Display {
             for (j = 0; j <= 7; j++) {
                 System.out.print(" " + board[j][i] + " ");
             }
-            System.out.print(" " +  (i+1) );
+            System.out.print(" " +  (8-i) );
         }
         System.out.println("");
         System.out.println(" a  b  c  d  e  f  g  h");

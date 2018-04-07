@@ -35,4 +35,19 @@ public class Move {
     public int getTargetY() {
         return targetY;
     }
+
+    public boolean isOccupied() {
+        return occupied;
+    }
+
+    @Override
+    public boolean equals(Object otherObj){
+
+        boolean same = false;
+
+        if(otherObj != null && otherObj instanceof Move){
+            same = (this.currentX == ((Move) otherObj).getCurrentX()) && (this.currentY == ((Move) otherObj).getCurrentY()) && (this.targetX == ((Move) otherObj).getTargetX()) && (this.targetY == ((Move) otherObj).getTargetY()) && (this.occupied == ((Move) otherObj).isOccupied());
+        }
+        return same;
+    }
 }

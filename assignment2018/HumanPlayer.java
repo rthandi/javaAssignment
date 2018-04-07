@@ -44,22 +44,28 @@ public class HumanPlayer extends Player {
                 int toY = getNumber(moveTo);
 
                 //Validate inputs
-                if (!(fromX == -1 && fromY == -1 && toX == -1 && toY == -1)) {
+                if (!(fromX == -1 || fromY == -1 || toX == -1 || toY == -1)) {
                     inputMove = new Move(getBoard().getPiece(fromX, fromY), fromX, fromY, toX, toY, getBoard().occupied(toX, toY));
                     //Check if move is possible
+                    System.out.println(inputMove);
+                    System.out.println(getBoard().getPiece(fromX, fromY).availableMoves());
                     if (getBoard().getPiece(fromX, fromY).availableMoves().contains(inputMove)) {
+                        System.out.println("here");
                         if (getBoard().occupied(toX, toY)) {
+                            System.out.println("here");
                             //Delete piece from the opponent's piece collection
                             getOpponent().deletePiece(getBoard().getPiece(toX, toY));
                             //As it is a valid move we know that the piece can be taken if it occupied
                             getBoard().removePiece(toX, toY);
                         }
+                        System.out.println("here");
                         //Move piece to the position
                         getBoard().setPosition(toX, toY, getBoard().getPiece(fromX, fromY));
                         //Remove piece from old position
                         getBoard().removePiece(fromX, fromY);
                         //Change the piece's position on the piece's object
                         getBoard().getPiece(toX, toY).setPosition(toX, toY);
+                        System.out.println("here");
                         return true;
                     }
                 }
@@ -116,6 +122,7 @@ public class HumanPlayer extends Player {
         number--;
         //Need to flip values due to Array coordinates starting in top and chess coordinates starting from the bottom
         int flippedNumber;
+        System.out.println(number);
         switch (number) {
             case 0:
                 flippedNumber = 7;
@@ -145,6 +152,7 @@ public class HumanPlayer extends Player {
                 //-1 used for validation
                 flippedNumber = -1;
         }
+        System.out.println(flippedNumber);
         return flippedNumber;
     }
 }
