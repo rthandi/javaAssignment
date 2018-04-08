@@ -12,32 +12,39 @@ public class Rook extends Piece {
 
     @Override
     public ArrayList<Move> availableMoves() {
-        // obtain current co-ordinates
+        // obtain current co-ordinates and add one
         int x = this.getX();
         int y = this.getY();
 
-        Move theMove;
         ArrayList<Move> moves = new ArrayList<>();
 
         int i;
         //Up
-        for (i = 0; i >= y; i++) {
-            addMoves(x, y - i, moves);
+        for (i = 1; i <= y; i++) {
+            while(!(getBoard().occupied(x, y))){
+                addMoves(x, y - i, moves);
+            }
         }
 
         //Down
-        for (i = y; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            addMoves(x, y + i, moves);
+        for (i = y + 1; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
+            while(!(getBoard().occupied(x, y + i))) {
+                addMoves(x, y + i, moves);
+            }
         }
 
         //Left
-        for (i = 0; i >= x; i++) {
-            addMoves(x - i, y, moves);
+        for (i = 1; i <= x; i++) {
+            while(!(getBoard().occupied(x, y))) {
+                addMoves(x - i, y, moves);
+            }
         }
 
         //Right
-        for (i = x; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            addMoves(x + i, y, moves);
+        for (i = x + 1; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
+            while(!(getBoard().occupied(x, y))) {
+                addMoves(x + i, y, moves);
+            }
         }
 
         return moves;
