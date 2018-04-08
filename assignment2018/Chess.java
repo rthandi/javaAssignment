@@ -12,9 +12,8 @@ public class Chess {
         player1.setOpponent(player2);
 
         TextDisplay display = new TextDisplay();
-        display.cleanBoard();
+//        display.cleanBoard();
         display.displayBoard(player1.getPieces());
-        display.displayBoard(player2.getPieces());
 
         while (true){
             player1.makeMove();
