@@ -1,6 +1,7 @@
 package assignment2018;
 
 import assignment2018.codeprovided.Display;
+import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;
 
 import javax.swing.*;
@@ -9,6 +10,8 @@ import java.awt.*;
 public class GraphicalDisplay extends JFrame implements Display {
 
     final int DISPLAY_SIZE = 800;
+
+    private JButton[][] buttonArray = new JButton[8][8];
 
     public GraphicalDisplay(){
         setTitle("Chess");
@@ -27,29 +30,30 @@ public class GraphicalDisplay extends JFrame implements Display {
         Color myPink = new Color(255,20,147);
         for (i = 0; i < 8 ; i++){
             for (j = 0; j < 8; j++){
-                JButton button = new JButton();
+                ImageIcon image = new ImageIcon("img/WPawn");
+                buttonArray[i][j] = new JButton(image);
                 if (j % 2 == 0){
                     if (i % 2 == 0){
                         //White
-                        button.setBackground(myPink);
+                        buttonArray[i][j].setBackground(myPink);
                     }
                     else {
                         //Black
-                        button.setBackground(Color.YELLOW);
+                        buttonArray[i][j].setBackground(Color.YELLOW);
                     }
                 }
                 else{
                     if (i % 2 == 0){
                         //Black
-                        button.setBackground(Color.YELLOW);
+                        buttonArray[i][j].setBackground(Color.YELLOW);
                     }
                     else{
                         //White
-                        button.setBackground(myPink);
+                        buttonArray[i][j].setBackground(myPink);
                     }
 
                 }
-                contentPane.add(button);
+                contentPane.add(buttonArray[i][j]);
             }
         }
         revalidate();
@@ -57,19 +61,18 @@ public class GraphicalDisplay extends JFrame implements Display {
 
     public void setupBoard(Pieces myPieces){
         int i;
-        int j;
-
-
-        for (i = 0; i <= 8; i++){
-            for (j = 0; j <= 8; j++){
-
+        for (i = 0; i < myPieces.getNumPieces(); i++){
+            Piece currentPiece = myPieces.getPiece(i);
+            switch (currentPiece.getChar()){
+                case 'p':
+                    ImageIcon image = new ImageIcon("img/WPawn");
+                    buttonArray[currentPiece.getX()][currentPiece.getY()] = new JButton(image);
             }
         }
-
     }
 
     @Override
     public void displayBoard(Pieces myPieces) {
-
+        System.out.println("hbfha");
     }
 }
