@@ -6,6 +6,7 @@ import assignment2018.codeprovided.Pieces;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class GraphicalDisplay extends JFrame implements Display {
 
@@ -30,8 +31,7 @@ public class GraphicalDisplay extends JFrame implements Display {
         Color myPink = new Color(255,20,147);
         for (i = 0; i < 8 ; i++){
             for (j = 0; j < 8; j++){
-                ImageIcon image = new ImageIcon("img/WPawn");
-                buttonArray[i][j] = new JButton(image);
+                buttonArray[i][j] = new JButton();
                 if (j % 2 == 0){
                     if (i % 2 == 0){
                         //White
@@ -65,7 +65,7 @@ public class GraphicalDisplay extends JFrame implements Display {
             Piece currentPiece = myPieces.getPiece(i);
             switch (currentPiece.getChar()){
                 case 'p':
-                    ImageIcon image = new ImageIcon("img/WPawn");
+                    ImageIcon image = new ImageIcon("assignment2018/img/WPawn");
                     buttonArray[currentPiece.getX()][currentPiece.getY()] = new JButton(image);
             }
         }
