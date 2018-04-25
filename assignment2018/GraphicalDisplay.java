@@ -6,7 +6,6 @@ import assignment2018.codeprovided.Pieces;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 public class GraphicalDisplay extends JFrame implements Display {
 
@@ -51,8 +50,8 @@ public class GraphicalDisplay extends JFrame implements Display {
                         //White
                         buttonArray[i][j].setBackground(myPink);
                     }
-
                 }
+
                 contentPane.add(buttonArray[i][j]);
             }
         }
@@ -63,10 +62,48 @@ public class GraphicalDisplay extends JFrame implements Display {
         int i;
         for (i = 0; i < myPieces.getNumPieces(); i++){
             Piece currentPiece = myPieces.getPiece(i);
+            ImageIcon image = null;
             switch (currentPiece.getChar()){
                 case 'p':
-                    ImageIcon image = new ImageIcon("assignment2018/img/WPawn");
-                    buttonArray[currentPiece.getX()][currentPiece.getY()] = new JButton(image);
+                    image = new ImageIcon("assignment2018/img/WPawn");
+                    break;
+                case 'n':
+                    image = new ImageIcon("assignment2018/img/WKnight");
+                    break;
+                case 'b':
+                    image = new ImageIcon("assignment2018/img/WBishop");
+                    break;
+                case 'r':
+                    image = new ImageIcon("assignment2018/img/WRook");
+                    break;
+                case 'q':
+                    image = new ImageIcon("assignment2018/img/WQueen");
+                    break;
+                case 'k':
+                    image = new ImageIcon("assignment2018/img/WKing");
+                    break;
+                case 'P':
+                    image = new ImageIcon("assignment2018/img/BPawn");
+                    break;
+                case 'N':
+                    image = new ImageIcon("assignment2018/img/BKnight");
+                    break;
+                case 'B':
+                    image = new ImageIcon("assignment2018/img/BBishop");
+                    break;
+                case 'R':
+                    image = new ImageIcon("assignment2018/img/BRook");
+                    break;
+                case 'Q':
+                    image = new ImageIcon("assignment2018/img/BQueen");
+                    break;
+                case 'K':
+                    image = new ImageIcon("assignment2018/img/BKing");
+                    break;
+            }
+            if (image != null){
+                buttonArray[currentPiece.getX()][currentPiece.getY()] = new JButton(image);
+
             }
         }
     }
