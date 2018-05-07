@@ -29,9 +29,9 @@ public class Chess {
 
         while (true){
             player1.makeMove();
-            display.setupBoard(player1.getPieces());
+            display.displayBoard(player1.getPieces());
             player2.makeMove();
-            display.setupBoard(player2.getPieces());
+            display.displayBoard(player2.getPieces());
         }
 
     }

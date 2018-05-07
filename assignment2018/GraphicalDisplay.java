@@ -60,45 +60,7 @@ public class GraphicalDisplay extends JFrame implements Display {
         int i;
         for (i = 0; i < myPieces.getNumPieces(); i++){
             Piece currentPiece = myPieces.getPiece(i);
-            ImageIcon image = null;
-            switch (currentPiece.getChar()){
-                case 'p':
-                    image = new ImageIcon("assignment2018/img/WPawn.png");
-                    break;
-                case 'n':
-                    image = new ImageIcon("assignment2018/img/WKnight.png");
-                    break;
-                case 'b':
-                    image = new ImageIcon("assignment2018/img/WBishop.png");
-                    break;
-                case 'r':
-                    image = new ImageIcon("assignment2018/img/WRook.png");
-                    break;
-                case 'q':
-                    image = new ImageIcon("assignment2018/img/WQueen.png");
-                    break;
-                case 'k':
-                    image = new ImageIcon("assignment2018/img/WKing.png");
-                    break;
-                case 'P':
-                    image = new ImageIcon("assignment2018/img/BPawn.png");
-                    break;
-                case 'N':
-                    image = new ImageIcon("assignment2018/img/BKnight.png");
-                    break;
-                case 'B':
-                    image = new ImageIcon("assignment2018/img/BBishop.png");
-                    break;
-                case 'R':
-                    image = new ImageIcon("assignment2018/img/BRook.png");
-                    break;
-                case 'Q':
-                    image = new ImageIcon("assignment2018/img/BQueen.png");
-                    break;
-                case 'K':
-                    image = new ImageIcon("assignment2018/img/BKing.png");
-                    break;
-            }
+            ImageIcon image = getImageIcon(currentPiece.getChar());
             if (image != null){
                 buttonArray[currentPiece.getY()][currentPiece.getX()].setIcon(image);
                 revalidate();
@@ -106,8 +68,69 @@ public class GraphicalDisplay extends JFrame implements Display {
         }
     }
 
+    public ImageIcon getImageIcon(char pieceChar){
+        ImageIcon image = null;
+        switch (pieceChar){
+            case 'p':
+                image = new ImageIcon("assignment2018/img/WPawn.png");
+                break;
+            case 'n':
+                image = new ImageIcon("assignment2018/img/WKnight.png");
+                break;
+            case 'b':
+                image = new ImageIcon("assignment2018/img/WBishop.png");
+                break;
+            case 'r':
+                image = new ImageIcon("assignment2018/img/WRook.png");
+                break;
+            case 'q':
+                image = new ImageIcon("assignment2018/img/WQueen.png");
+                break;
+            case 'k':
+                image = new ImageIcon("assignment2018/img/WKing.png");
+                break;
+            case 'P':
+                image = new ImageIcon("assignment2018/img/BPawn.png");
+                break;
+            case 'N':
+                image = new ImageIcon("assignment2018/img/BKnight.png");
+                break;
+            case 'B':
+                image = new ImageIcon("assignment2018/img/BBishop.png");
+                break;
+            case 'R':
+                image = new ImageIcon("assignment2018/img/BRook.png");
+                break;
+            case 'Q':
+                image = new ImageIcon("assignment2018/img/BQueen.png");
+                break;
+            case 'K':
+                image = new ImageIcon("assignment2018/img/BKing.png");
+                break;
+        }
+        return image;
+    }
+
     @Override
     public void displayBoard(Pieces myPieces) {
-
+        //Find difference
+        int i;
+        for (i = 0; i < myPieces.getNumPieces(); i++){
+            Piece currentPiece = myPieces.getPiece(i);
+            if (buttonArray[currentPiece.getY()][currentPiece.getX()].getIcon() == null){
+                ImageIcon image = getImageIcon(currentPiece.getChar());
+                buttonArray[currentPiece.getY()][currentPiece.getX()].setIcon(image);
+                //Find where it was moved from
+                int j;
+                for (i = 0; i < 8; i++){
+                    for (j = 0; j < 8; j++){
+                        if (buttonArray[i][j].getIcon().equals(image) && myPieces.getPiece(0).getBoard().occupied(j, i) && myPieces.getPiece(0).getBoard().getPiece(j, i) == null){
+                            buttonArray[i][j].setIcon(null);
+                        }
+                    }
+                }
+            }
+        }
+        revalidate();
     }
 }
