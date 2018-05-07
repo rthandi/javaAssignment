@@ -1,10 +1,7 @@
 package assignment2018;
 
 import assignment2018.codeprovided.Display;
-import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;
-
-import java.util.ArrayList;
 
 public class TextDisplay implements Display {
 

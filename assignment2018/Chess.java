@@ -27,5 +27,12 @@ public class Chess {
         display.setupBoard(player1.getPieces());
         display.setupBoard(player2.getPieces());
 
+        while (true){
+            player1.makeMove();
+            display.setupBoard(player1.getPieces());
+            player2.makeMove();
+            display.setupBoard(player2.getPieces());
+        }
+
     }
 }
