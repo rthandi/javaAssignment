@@ -6,6 +6,7 @@ import assignment2018.codeprovided.Pieces;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class GraphicalDisplay extends JFrame implements Display {
 
@@ -125,9 +126,9 @@ public class GraphicalDisplay extends JFrame implements Display {
                 for (i = 0; i < 8; i++){
                     for (j = 0; j < 8; j++){
                         System.out.println(myPieces.getPiece(0).getBoard().occupied(0,6));
-                        if (buttonArray[j][i].getIcon() != null && image.getDescription() == ((ImageIcon)buttonArray[j][i].getIcon()).getDescription() && !myPieces.getPiece(0).getBoard().occupied(j, i)){
-                            System.out.println("akdsaodakdn");
-                            buttonArray[i][j].setIcon(null);
+                        if (buttonArray[j][i].getIcon() != null && Objects.equals(image.getDescription(), ((ImageIcon) buttonArray[j][i].getIcon()).getDescription()) && !myPieces.getPiece(0).getBoard().occupied(i, j)){
+                            System.out.println(i + " " + j);
+                            buttonArray[j][i].setIcon(null);
                         }
                     }
                 }
