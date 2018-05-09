@@ -1,5 +1,6 @@
 package assignment2018;
 
+import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;
 import assignment2018.codeprovided.Player;
 
@@ -50,7 +51,16 @@ public class HumanPlayer extends Player {
                     if (getBoard().occupied(fromX, fromY) && getBoard().getPiece(fromX, fromY).availableMoves().contains(inputMove)) {
                         if (getBoard().occupied(toX, toY)) {
                             //Delete piece from the opponent's piece collection
-                            getOpponent().deletePiece(getBoard().getPiece(toX, toY));
+                            for (i = 0; i < getPieces().getNumPieces(); i++){
+                                Piece currentPiece = getOpponent().getPieces().getPiece(i);
+                                Piece pieceToDelete = null;
+                                if (currentPiece.getX() == toX && currentPiece.getY() == toY){
+                                    pieceToDelete = currentPiece;
+                                }
+                                if (pieceToDelete != null){
+                                    getOpponent().deletePiece(pieceToDelete);
+                                }
+                            }
                             //As it is a valid move we know that the piece can be taken if it occupied
                             getBoard().removePiece(toX, toY);
                         }

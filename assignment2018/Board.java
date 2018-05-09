@@ -26,7 +26,6 @@ public class Board {
 
     public Piece getPiece(int x, int y) {
         //Whenever this method is called checkIfValidLocation should be called before it to make sure no errors occur
-        //TODO: add exception here to make sure that there is no possibilities of errors
         return boardArray[x][y];
     }
 
@@ -36,7 +35,6 @@ public class Board {
 
     public void setPosition(int x, int y, Piece piece) {
         //Whenever this method is called checkIfValidLocation should be called before it to make sure no errors occur
-        //TODO: add exception here to make sure that there is no possibilities of errors
         boardArray[x][y] = piece;
     }
 
