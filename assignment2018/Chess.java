@@ -28,10 +28,10 @@ public class Chess {
         display.setupBoard(player2.getPieces());
 
         while (true){
-            player1.makeMove();
             display.displayBoard(player1.getPieces());
-            player2.makeMove();
+            player1.makeMove();
             display.displayBoard(player2.getPieces());
+            player2.makeMove();
         }
 
     }

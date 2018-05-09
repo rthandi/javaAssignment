@@ -72,40 +72,40 @@ public class GraphicalDisplay extends JFrame implements Display {
         ImageIcon image = null;
         switch (pieceChar){
             case 'p':
-                image = new ImageIcon("assignment2018/img/WPawn.png");
+                image = new ImageIcon("assignment2018/img/WPawn.png", "WPawn");
                 break;
             case 'n':
-                image = new ImageIcon("assignment2018/img/WKnight.png");
+                image = new ImageIcon("assignment2018/img/WKnight.png", "WKnight");
                 break;
             case 'b':
-                image = new ImageIcon("assignment2018/img/WBishop.png");
+                image = new ImageIcon("assignment2018/img/WBishop.png", "WBishop");
                 break;
             case 'r':
-                image = new ImageIcon("assignment2018/img/WRook.png");
+                image = new ImageIcon("assignment2018/img/WRook.png", "WRook");
                 break;
             case 'q':
-                image = new ImageIcon("assignment2018/img/WQueen.png");
+                image = new ImageIcon("assignment2018/img/WQueen.png", "WQueen");
                 break;
             case 'k':
-                image = new ImageIcon("assignment2018/img/WKing.png");
+                image = new ImageIcon("assignment2018/img/WKing.png", "WKing");
                 break;
             case 'P':
-                image = new ImageIcon("assignment2018/img/BPawn.png");
+                image = new ImageIcon("assignment2018/img/BPawn.png", "BPawn");
                 break;
             case 'N':
-                image = new ImageIcon("assignment2018/img/BKnight.png");
+                image = new ImageIcon("assignment2018/img/BKnight.png", "BKnight");
                 break;
             case 'B':
-                image = new ImageIcon("assignment2018/img/BBishop.png");
+                image = new ImageIcon("assignment2018/img/BBishop.png", "BBishop");
                 break;
             case 'R':
-                image = new ImageIcon("assignment2018/img/BRook.png");
+                image = new ImageIcon("assignment2018/img/BRook.png", "BRook");
                 break;
             case 'Q':
-                image = new ImageIcon("assignment2018/img/BQueen.png");
+                image = new ImageIcon("assignment2018/img/BQueen.png", "BQueen");
                 break;
             case 'K':
-                image = new ImageIcon("assignment2018/img/BKing.png");
+                image = new ImageIcon("assignment2018/img/BKing.png", "BKing");
                 break;
         }
         return image;
@@ -124,7 +124,9 @@ public class GraphicalDisplay extends JFrame implements Display {
                 int j;
                 for (i = 0; i < 8; i++){
                     for (j = 0; j < 8; j++){
-                        if (buttonArray[i][j].getIcon().equals(image) && myPieces.getPiece(0).getBoard().occupied(j, i) && myPieces.getPiece(0).getBoard().getPiece(j, i) == null){
+                        System.out.println(myPieces.getPiece(0).getBoard().occupied(0,6));
+                        if (buttonArray[j][i].getIcon() != null && image.getDescription() == ((ImageIcon)buttonArray[j][i].getIcon()).getDescription() && !myPieces.getPiece(0).getBoard().occupied(j, i)){
+                            System.out.println("akdsaodakdn");
                             buttonArray[i][j].setIcon(null);
                         }
                     }
