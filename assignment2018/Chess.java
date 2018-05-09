@@ -7,8 +7,8 @@ public class Chess {
     public static void main(String[] args) {
         Board board = new Board();
         HumanPlayer player2;
-        HumanPlayer player1 = new HumanPlayer("name", new Pieces(board, 1), board, null);
-        player2 = new HumanPlayer("name", new Pieces(board, 0), board, player1);
+        HumanPlayer player1 = new HumanPlayer("name", new Pieces(board, 0), board, null);
+        player2 = new HumanPlayer("name", new Pieces(board, 1), board, player1);
         player1.setOpponent(player2);
 //
 //        TextDisplay display = new TextDisplay();
@@ -27,11 +27,21 @@ public class Chess {
         display.setupBoard(player1.getPieces());
         display.setupBoard(player2.getPieces());
 
+        Boolean activePlayerFlag = false;
+
         while (true){
-            display.displayBoard(player1.getPieces());
-            player1.makeMove();
-            display.displayBoard(player2.getPieces());
-            player2.makeMove();
+            if (!activePlayerFlag){
+                player1.makeMove();
+                activePlayerFlag = true;
+                display.displayBoard(player1.getPieces());
+                display.displayBoard(player2.getPieces());
+            }
+            else {
+                player2.makeMove();
+                activePlayerFlag = false;
+                display.displayBoard(player2.getPieces());
+                display.displayBoard(player1.getPieces());
+            }
         }
 
     }

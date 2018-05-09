@@ -20,7 +20,11 @@ public class HumanPlayer extends Player {
         int i;
         for (i = 0; i <= getPieces().getNumPieces() - 1; i++) {
             while (possibleMoves.isEmpty()){
-                possibleMoves.addAll(getPieces().getPiece(i).availableMoves());
+                ArrayList<Move> availableMoves;
+                availableMoves = getPieces().getPiece(i).availableMoves();
+                if(!(availableMoves.get(0) == null)){
+                    possibleMoves.addAll(availableMoves);
+                }
             }
         }
 
