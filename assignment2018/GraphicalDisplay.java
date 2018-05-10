@@ -78,7 +78,7 @@ public class GraphicalDisplay extends JFrame implements Display {
                         if(!MakeMove.makeMove(activePlayer, moveFromX, moveFromY, finalJ, finalI)){
                             System.out.println("Invalid move");
                         }
-                        else{
+                        else {
                             displayBoard(activePlayer.getPieces());
                             if (activePlayer == player1){
                                 activePlayer = player2;
