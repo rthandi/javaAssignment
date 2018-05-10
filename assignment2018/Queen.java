@@ -27,7 +27,10 @@ public class Queen extends Piece {
         }
 
         //Down
-        for (i = y; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
+        for (i = y; i < getBoard().getBOARD_SIZE() - y; i++) {
+            if (i < 10){
+                System.out.println(i);
+            }
             addMoves(x, y + i, moves);
         }
 

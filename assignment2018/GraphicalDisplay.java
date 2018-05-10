@@ -3,19 +3,34 @@ package assignment2018;
 import assignment2018.codeprovided.Display;
 import assignment2018.codeprovided.Piece;
 import assignment2018.codeprovided.Pieces;
+import assignment2018.codeprovided.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class GraphicalDisplay extends JFrame implements Display {
 
     final int DISPLAY_SIZE = 800;
 
+    private Boolean moveToFlag = false;
+    private int moveFromX;
+    private int moveFromY;
+    private Player activePlayer;
+    private Player player1;
+    private Player player2;
+
     private JButton[][] buttonArray = new JButton[8][8];
 
-    public GraphicalDisplay(){
-        setTitle("Chess");
+    public GraphicalDisplay(Player player1Input, Player player2Input){
+        player1 = player1Input;
+        player2 = player2Input;
+
+        activePlayer = player1;
+
+        setTitle("Chess - Robbie Thandi");
         setSize(DISPLAY_SIZE, DISPLAY_SIZE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -50,11 +65,42 @@ public class GraphicalDisplay extends JFrame implements Display {
                         buttonArray[i][j].setBackground(myPink);
                     }
                 }
-
                 contentPane.add(buttonArray[i][j]);
+                int finalI = i;
+                int finalJ = j;
+                buttonArray[i][j].addActionListener(e -> {
+                    if (!moveToFlag){
+                        moveFromX = finalJ;
+                        moveFromY = finalI;
+                        moveToFlag = true;
+                    }
+                    else {
+                        if(!MakeMove.makeMove(activePlayer, moveFromX, moveFromY, finalJ, finalI)){
+                            System.out.println("Invalid move");
+                        }
+                        else{
+                            displayBoard(activePlayer.getPieces());
+                            if (activePlayer == player1){
+                                activePlayer = player2;
+                            }
+                            else{
+                                activePlayer = player1;
+                            }
+                        }
+                        moveToFlag = false;
+                    }
+                });
             }
         }
         revalidate();
+    }
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    public void setActivePlayer(Player activePlayer) {
+        this.activePlayer = activePlayer;
     }
 
     public void setupBoard(Pieces myPieces){

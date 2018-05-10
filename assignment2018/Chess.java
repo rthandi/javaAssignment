@@ -1,9 +1,9 @@
 package assignment2018;
 
 import assignment2018.codeprovided.Pieces;
+import assignment2018.codeprovided.Player;
 
 public class Chess {
-
     public static void main(String[] args) {
         Board board = new Board();
         HumanPlayer player2;
@@ -22,27 +22,23 @@ public class Chess {
 //            display.displayBoard(player2.getPieces());
 //        }
 
-
-        GraphicalDisplay display = new GraphicalDisplay();
+        GraphicalDisplay display = new GraphicalDisplay(player1, player2);
         display.setupBoard(player1.getPieces());
         display.setupBoard(player2.getPieces());
-
-        Boolean activePlayerFlag = false;
+        display.setActivePlayer(player1);
 
         while (true){
-            if (!activePlayerFlag){
+            if (display.getActivePlayer() == player1){
                 player1.makeMove();
-                activePlayerFlag = true;
                 display.displayBoard(player1.getPieces());
-                display.displayBoard(player2.getPieces());
+//                display.displayBoard(player2.getPieces());
+                display.setActivePlayer(player2);
             }
             else {
                 player2.makeMove();
-                activePlayerFlag = false;
                 display.displayBoard(player2.getPieces());
-                display.displayBoard(player1.getPieces());
+                display.setActivePlayer(player1);
             }
         }
-
     }
 }

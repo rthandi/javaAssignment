@@ -14,72 +14,31 @@ public class HumanPlayer extends Player {
 
     @Override
     public boolean makeMove() {
+        Scanner input = new Scanner(System.in);
 
-        //Loop through all pieces to find an available move
-        ArrayList<Move> possibleMoves = new ArrayList<>();
-        int i;
-        for (i = 0; i <= getPieces().getNumPieces() - 1; i++) {
-            while (possibleMoves.isEmpty()){
-                ArrayList<Move> availableMoves;
-                availableMoves = getPieces().getPiece(i).availableMoves();
-                if(!(availableMoves.get(0) == null)){
-                    possibleMoves.addAll(availableMoves);
-                }
+        boolean flag = false;
+
+        while (!flag) {
+            //Get move from the user
+            System.out.println("What position is the piece you'd like to move in?");
+            String moveFrom = input.next();
+            System.out.println("Where would you like to move this piece?");
+            String moveTo = input.next();
+
+            //Convert inputs into ints
+            int fromX = getLetterAsNumber(moveFrom);
+            int fromY = getNumber(moveFrom);
+            int toX = getLetterAsNumber(moveTo);
+            int toY = getNumber(moveTo);
+
+            if (MakeMove.makeMove(this, fromX, fromY,toX, toY)){
+                flag = true;
+            }
+            else{
+                System.out.println("Invalid move. Try again");
             }
         }
-
-        //Check if there are possible moves
-        if (possibleMoves.isEmpty()) {
-            return false;
-        } else {
-            Move inputMove;
-            Scanner input = new Scanner(System.in);
-
-            while (true) {
-                //Get move from the user
-                System.out.println("What position is the piece you'd like to move in?");
-                String moveFrom = input.next();
-                System.out.println("Where would you like to move this piece?");
-                String moveTo = input.next();
-
-                //Convert inputs into ints
-                int fromX = getLetterAsNumber(moveFrom);
-                int fromY = getNumber(moveFrom);
-                int toX = getLetterAsNumber(moveTo);
-                int toY = getNumber(moveTo);
-
-                //Validate inputs
-                if (!(fromX == -1 || fromY == -1 || toX == -1 || toY == -1)) {
-                    inputMove = new Move(getBoard().getPiece(fromX, fromY), fromX, fromY, toX, toY, getBoard().occupied(toX, toY));
-                    //Check if move is possible
-                    if (getBoard().occupied(fromX, fromY) && getBoard().getPiece(fromX, fromY).availableMoves().contains(inputMove)) {
-                        if (getBoard().occupied(toX, toY)) {
-                            //Delete piece from the opponent's piece collection
-                            for (i = 0; i < getPieces().getNumPieces(); i++){
-                                Piece currentPiece = getOpponent().getPieces().getPiece(i);
-                                Piece pieceToDelete = null;
-                                if (currentPiece.getX() == toX && currentPiece.getY() == toY){
-                                    pieceToDelete = currentPiece;
-                                }
-                                if (pieceToDelete != null){
-                                    getOpponent().deletePiece(pieceToDelete);
-                                }
-                            }
-                            //As it is a valid move we know that the piece can be taken if it occupied
-                            getBoard().removePiece(toX, toY);
-                        }
-                        //Move piece to the position
-                        getBoard().setPosition(toX, toY, getBoard().getPiece(fromX, fromY));
-                        //Remove piece from old position
-                        getBoard().removePiece(fromX, fromY);
-                        //Change the piece's position on the piece's object
-                        getBoard().getPiece(toX, toY).setPosition(toX, toY);
-                        return true;
-                    }
-                }
-                System.out.println("Invalid move. Try again.");
-            }
-        }
+        return true;
     }
 
     public int getLetterAsNumber(String input) {
