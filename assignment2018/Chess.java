@@ -25,20 +25,19 @@ public class Chess {
         GraphicalDisplay display = new GraphicalDisplay(player1, player2);
         display.setupBoard(player1.getPieces());
         display.setupBoard(player2.getPieces());
-        display.setActivePlayer(player1);
 
-        while (true){
-            if (display.getActivePlayer() == player1){
+        while (true) {
+            if (display.getActivePlayer() == player1) {
                 player1.makeMove();
                 display.displayBoard(player1.getPieces());
 //                display.displayBoard(player2.getPieces());
                 display.setActivePlayer(player2);
-            }
-            else {
+            } else {
                 player2.makeMove();
                 display.displayBoard(player2.getPieces());
                 display.setActivePlayer(player1);
             }
         }
+
     }
 }

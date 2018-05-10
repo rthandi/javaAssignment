@@ -12,7 +12,7 @@ public class Rook extends Piece {
 
     @Override
     public ArrayList<Move> availableMoves() {
-        // obtain current co-ordinates and add one
+        // obtain current co-ordinates
         int x = this.getX();
         int y = this.getY();
 

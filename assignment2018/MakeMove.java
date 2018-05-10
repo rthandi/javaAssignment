@@ -10,7 +10,7 @@ public class MakeMove {
         //Loop through all pieces to find an available move
         ArrayList<Move> possibleMoves = new ArrayList<>();
         int i;
-        for (i = 0; i <= player.getPieces().getNumPieces() - 1; i++) {
+        for (i = 0; i < player.getPieces().getNumPieces(); i++) {
             while (possibleMoves.isEmpty()){
                 ArrayList<Move> availableMoves;
                 availableMoves = player.getPieces().getPiece(i).availableMoves();
@@ -37,7 +37,7 @@ public class MakeMove {
                             break;
                         }
                     }
-                    //As it is a valid move we know that the piece can be taken if it occupied
+                    //As it is a valid move we know that the piece can be taken if it is occupied
                     player.getBoard().removePiece(toX, toY);
                 }
                 //Move piece to the position

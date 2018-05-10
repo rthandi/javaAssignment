@@ -75,15 +75,16 @@ public class GraphicalDisplay extends JFrame implements Display {
                         moveToFlag = true;
                     }
                     else {
-                        if(!MakeMove.makeMove(activePlayer, moveFromX, moveFromY, finalJ, finalI)){
+                        if(activePlayer.getPieces().getPiece(0).getColour() != activePlayer.getBoard().getPiece(moveFromX, moveFromY).getColour() || !MakeMove.makeMove(activePlayer, moveFromX, moveFromY, finalJ, finalI)){
                             System.out.println("Invalid move");
                         }
                         else {
-                            displayBoard(activePlayer.getPieces());
                             if (activePlayer == player1){
+                                displayBoard(player1.getPieces());
                                 activePlayer = player2;
                             }
                             else{
+                                displayBoard(player2.getPieces());
                                 activePlayer = player1;
                             }
                         }
@@ -174,6 +175,7 @@ public class GraphicalDisplay extends JFrame implements Display {
                         if (buttonArray[j][i].getIcon() != null && Objects.equals(image.getDescription(), ((ImageIcon) buttonArray[j][i].getIcon()).getDescription()) && !myPieces.getPiece(0).getBoard().occupied(i, j)){
                             System.out.println(i + " " + j);
                             buttonArray[j][i].setIcon(null);
+                            revalidate();
                         }
                     }
                 }
