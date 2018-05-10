@@ -18,39 +18,43 @@ public class Rook extends Piece {
 
         ArrayList<Move> moves = new ArrayList<>();
 
+        System.out.println("asdasdasdasd");
+
         int i;
         //Up
         for (i = 1; i <= y; i++) {
-            while(!(getBoard().occupied(x, y))){
+            while(!(getBoard().occupied(x, y - i))){
                 addMoves(x, y - i, moves);
+                System.out.println("asdasd");
+                System.out.println(moves.get(0));
             }
         }
-
-        //Down
-        for (i = y + 1; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            while(!(getBoard().occupied(x, y + i))) {
-                addMoves(x, y + i, moves);
-            }
-        }
-
-        //Left
-        for (i = 1; i <= x; i++) {
-            while(!(getBoard().occupied(x, y))) {
-                addMoves(x - i, y, moves);
-            }
-        }
-
-        //Right
-        for (i = x + 1; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            while(!(getBoard().occupied(x, y))) {
-                addMoves(x + i, y, moves);
-            }
-        }
+//
+//        //Down
+//        for (i = y + 1; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
+//            while(!(getBoard().occupied(x, y + i))) {
+//                addMoves(x, y + i, moves);
+//            }
+//        }
+//
+//        //Left
+//        for (i = 1; i <= x; i++) {
+//            while(!(getBoard().occupied(x, y))) {
+//                addMoves(x - i, y, moves);
+//            }
+//        }
+//
+//        //Right
+//        for (i = x + 1; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
+//            while(!(getBoard().occupied(x, y))) {
+//                addMoves(x + i, y, moves);
+//            }
+//        }
 
         return moves;
     }
 
-    private void addMoves(int x, int y, ArrayList<Move> moves) {
+    private ArrayList<Move> addMoves(int x, int y, ArrayList<Move> moves) {
         //Check that the target space is not out of range
         while (!(getBoard().outOfRange(x, y))) {
             //Check if it is occupied
@@ -68,5 +72,6 @@ public class Rook extends Piece {
             Move theMove = new Move(this, getX(), getY(), x, y, false);
             moves.add(theMove);
         }
+        return moves;
     }
 }
