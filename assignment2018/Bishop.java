@@ -61,23 +61,18 @@ public class Bishop extends Piece {
     }
 
     private ArrayList<Move> addMoves(int x, int y, ArrayList<Move> moves) {
-        System.out.println("1");
         //Check if it is occupied
         if (getBoard().occupied(x, y)) {
-            System.out.println("2");
             //Check the colour is the same
             if (!(getColour() == getBoard().getPiece(x, y).getColour())) {
-                System.out.println("3");
                 //same colour so add to the array as valid move
                 Move theMove = new Move(this, getX(), getY(), x, y, true);
                 moves.add(theMove);
             }
             //Can't go through a piece so return moves
-            System.out.println("4");
             return moves;
         }
         //Not going through a piece and not out of bounds so valid move
-        System.out.println("5");
         Move theMove = new Move(this, getX(), getY(), x, y, false);
         moves.add(theMove);
         return moves;

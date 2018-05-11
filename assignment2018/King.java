@@ -17,34 +17,53 @@ public class King extends Piece {
         // obtain current co-ordinates
         int x = this.getX();
         int y = this.getY();
-        
+
         ArrayList<Move> moves = new ArrayList<>();
-        Move theMove;
 
-        //First move is to move forward one
+        //Move up one
+        addMoves(x, y - 1, moves);
 
+        //Move down one
+        addMoves(x, y + 1, moves);
 
-        int i;
-        int j;
-        //Loop through x and y between -1 and 1
-        for (i = -1; i <= 1; i++){
-            for (j = -1; j <= 1; j++){
-                //Check target space is in bounds
-                if (!(getBoard().outOfRange(i, j))) {
-                    //Check if target space is occupied
-                    if (getBoard().occupied(i, j)) {
-                        //Check if it is the same colour
-                        //Don't need to do a check to see if i and j are both 0 as the piece will have the same colour so a move will not be generated
-                        if (!(getBoard().getPiece(i, j).getColour() == getColour())) {
-                            theMove = new Move(this, x, y, i, j, true);
-                            moves.add(theMove);
-                        }
-                    } else {
-                        theMove = new Move(this, x, y, i, j, false);
-                        moves.add(theMove);
-                    }
+        //Move left one
+        addMoves(x - 1, y, moves);
+
+        //Move right one
+        addMoves(x + 1, y, moves);
+
+        //Move up left one
+        addMoves(x - 1, y - 1, moves);
+
+        //Move up right one
+        addMoves(x + 1, y - 1, moves);
+
+        //Move down left one
+        addMoves(x - 1, y + 1, moves);
+
+        //Move down right one
+        addMoves(x + 1, y + 1, moves);
+
+        return moves;
+    }
+
+    private ArrayList<Move> addMoves(int x, int y, ArrayList<Move> moves) {
+        //check within range
+        if (x >= 0 && x < getBoard().getBOARD_SIZE() && y >= 0 && y< getBoard().getBOARD_SIZE()) {
+            //Check if it is occupied
+            if (getBoard().occupied(x, y)) {
+                //Check the colour is the same
+                if (!(getColour() == getBoard().getPiece(x, y).getColour())) {
+                    //same colour so add to the array as valid move
+                    Move theMove = new Move(this, getX(), getY(), x, y, true);
+                    moves.add(theMove);
                 }
+                //Can't go through a piece so return moves
+                return moves;
             }
+            //Not going through a piece and not out of bounds so valid move
+            Move theMove = new Move(this, getX(), getY(), x, y, false);
+            moves.add(theMove);
         }
         return moves;
     }
