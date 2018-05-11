@@ -7,8 +7,6 @@ import assignment2018.codeprovided.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class GraphicalDisplay extends JFrame implements Display {
@@ -82,10 +80,14 @@ public class GraphicalDisplay extends JFrame implements Display {
                             if (activePlayer == player1){
                                 displayBoard(player1.getPieces());
                                 activePlayer = player2;
+                                player2.makeMove();
+                                revalidate();
                             }
                             else{
                                 displayBoard(player2.getPieces());
                                 activePlayer = player1;
+                                player1.makeMove();
+                                revalidate();
                             }
                         }
                         moveToFlag = false;
