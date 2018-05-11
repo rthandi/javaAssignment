@@ -9,9 +9,6 @@ public class Board {
 
     private Piece[][] boardArray = new Piece[BOARD_SIZE][BOARD_SIZE];
 
-    public Board() {
-    }
-
     public int getBOARD_SIZE() {
         return BOARD_SIZE;
     }

@@ -21,6 +21,9 @@ public class King extends Piece {
         ArrayList<Move> moves = new ArrayList<>();
         Move theMove;
 
+        //First move is to move forward one
+
+
         int i;
         int j;
         //Loop through x and y between -1 and 1

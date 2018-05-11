@@ -22,76 +22,85 @@ public class Queen extends Piece {
         int j;
 
         //Up
-        for (i = 0; i >= y; i++) {
+        for (i = 1; i <= y; i++) {
             addMoves(x, y - i, moves);
         }
 
         //Down
-        for (i = y; i < getBoard().getBOARD_SIZE() - y; i++) {
-            if (i < 10){
-                System.out.println(i);
-            }
-            addMoves(x, y + i, moves);
+        for (i = y; i < getBoard().getBOARD_SIZE(); i++) {
+            addMoves(x, i, moves);
         }
 
         //Left
-        for (i = 0; i >= x; i++) {
+        for (i = 1; i <= x; i++) {
             addMoves(x - i, y, moves);
         }
 
         //Right
-        for (i = x; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            addMoves(x + i, y, moves);
+        for (i = x; i < getBoard().getBOARD_SIZE(); i++) {
+            addMoves(i, y, moves);
         }
 
+
         //Down right
-        j = 0;
-        for (i = 0; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            addMoves(x + j, y + i, moves);
-            j++;
+        j = x;
+        for (i = y; i < getBoard().getBOARD_SIZE(); i++) {
+            if(j < getBoard().getBOARD_SIZE()){
+                addMoves(j, i, moves);
+                j++;
+            }
         }
 
         //Up left
-        j = 0;
-        for (i = 0; i >= y; i++) {
-            addMoves(x - j, y - i, moves);
-            j++;
+        j = 1;
+        for (i = 1; i <= y; i++) {
+            if (j <= x){
+                addMoves(x - j, y - i, moves);
+                j++;
+            }
         }
 
         //Down left
-        j = 0;
-        for (i = 0; i < getBoard().getBOARD_SIZE() - 1 - y; i++) {
-            addMoves(x - j, y + i, moves);
-            j++;
+        j = 1;
+        for (i = y; i < getBoard().getBOARD_SIZE(); i++) {
+            if (j <= x){
+                addMoves(x - j + 1, i, moves);
+                j++;
+            }
         }
 
         //Up right
-        j = 0;
-        for (i = 0; i >= y; i++) {
-            addMoves(x + j, y - i, moves);
-            j++;
+        j = x;
+        for (i = 1; i <= y; i++) {
+            if(j < getBoard().getBOARD_SIZE()) {
+                addMoves(j, y - i + 1, moves);
+                j++;
+            }
         }
 
         return moves;
     }
 
-    private void addMoves(int x, int y, ArrayList<Move> moves) {
-        //Check that the target space is not out of range
-        while (!(getBoard().outOfRange(x, y))) {
-            //Check if it is occupied
-            if (getBoard().occupied(x, y)) {
-                //Check the colour is the same
-                if (!(getColour() == getBoard().getPiece(x, y).getColour())) {
-                    //same colour so add to the array as valid move
-                    Move theMove = new Move(this, getX(), getY(), x, y, true);
-                    moves.add(theMove);
-                }
-                //Can't go through a piece so break out of loop
-                break;
+    private ArrayList<Move> addMoves(int x, int y, ArrayList<Move> moves) {
+        System.out.println("1");
+        //Check if it is occupied
+        if (getBoard().occupied(x, y)) {
+            System.out.println("2");
+            //Check the colour is the same
+            if (!(getColour() == getBoard().getPiece(x, y).getColour())) {
+                System.out.println("3");
+                //same colour so add to the array as valid move
+                Move theMove = new Move(this, getX(), getY(), x, y, true);
+                moves.add(theMove);
             }
-            //Not going through a piece and not out of bounds so valid move
-            Move theMove = new Move(this, getX(), getY(), x, y, false);
-            moves.add(theMove);
+            //Can't go through a piece so return moves
+            System.out.println("4");
+            return moves;
         }
+        //Not going through a piece and not out of bounds so valid move
+        System.out.println("5");
+        Move theMove = new Move(this, getX(), getY(), x, y, false);
+        moves.add(theMove);
+        return moves;
     }
 }
